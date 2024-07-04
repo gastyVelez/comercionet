@@ -38,6 +38,7 @@ def ver_productos():
     cursor = db.cursor() #en lugar de tener una lista con tuplas, tener un diccionario con clave(campo) y valor(dato)
     cursor.execute("DELETE FROM productos WHERE id = %s", (id,))
 
+    db.commit()
     cursor.close()
     return jsonify("Registro eliminado con exito!!") #generamos un json como respuesta
 
@@ -46,6 +47,9 @@ def ver_productos():
 @app.route('/agregar_producto/<', methods=['POST'])
 def crear_producto():
     info = request.json
+    '''
+    info = { "nombre": "monitor", "cantidad": 45 , "precio":100500}
+    '''
     db = mysql.connector.connect(
         host='localhost',
         user='root',
@@ -61,9 +65,12 @@ def crear_producto():
     return jsonify({"mensaje: REGISTRO AGREGADO CON EXITO!!!"}) 
 # -------------------------------------------------------------------------------
 #put -> actualizar/modificar
-@app.route('/actualizar_producto/', methods=['PUT'])
+@app.route('/actualizar_producto/<int:id>', methods=['PUT'])
 def modificar_producto():
     info = request.json
+    '''
+    info = { "nombre": "monitor", "cantidad": 45 , "precio":100500}
+    '''
     db = mysql.connector.connect(
         host='localhost',
         user='root',
