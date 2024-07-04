@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const addProducto = async (producto) => {
-        await fetch('https://gastyPython.pythonanywhere.com/nuevo_producto', {
+        await fetch('https://gastyPython.pythonanywhere.com/agregar_producto', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const deleteProducto = async (id) => {
-        await fetch(`https://gastyPython.pythonanywhere.com/eliminar_producto/${id}`, {
+        await fetch(`https://gastyPython.pythonanywhere.com/eliminar_productos/${id}`, {
             method: 'DELETE'
         });
         fetchProductos();

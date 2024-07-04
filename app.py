@@ -27,7 +27,7 @@ def ver_productos():
 # -------------------------------------------------------------------------------
 #delete -> eliminar
 @app.route('/eliminar_productos/<int:id>', methods=['DELETE'])
-def ver_productos():
+def eliminar_productos():
     db = mysql.connector.connect(
         host='gastyPython.mysql.pythonanywhere-services.com',
         user='gastyPython',
@@ -44,7 +44,7 @@ def ver_productos():
 
 # -------------------------------------------------------------------------------
 #post -> crear un nuevo elemento en el servidor
-@app.route('/agregar_producto/<', methods=['POST'])
+@app.route('/agregar_producto', methods=['POST'])
 def crear_producto():
     info = request.json
     '''
