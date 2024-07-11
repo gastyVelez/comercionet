@@ -10,10 +10,10 @@ CORS(app)
 @app.route('/productos', methods=['GET'])
 def ver_productos():
     db = mysql.connector.connect(
-        host='localhost',
-        user='root',
-        password='12345',
-        database='comercio'
+        host='gastyPython.mysql.pythonanywhere-services.com',
+        user='gastyPython',
+        password='Python2024**',
+        database='gastyPython$comercio'
     )
 
     cursor = db.cursor(dictionary=True) #en lugar de tener una lista con tuplas, tener un diccionario con clave(campo) y valor(dato)
@@ -23,71 +23,69 @@ def ver_productos():
 
     cursor.close()
     return jsonify(productos) #generamos un json como respuesta
-# -------------------------------------------------------------------------------
 
-#delete -> eliminar un producto
+# -------------------------------------------------------------------------------
+#delete -> eliminar
 @app.route('/eliminar_productos/<int:id>', methods=['DELETE'])
 def eliminar_productos(id):
     db = mysql.connector.connect(
-        host='localhost',
-        user='root',
-        password='12345',
-        database='comercio'
+        host='gastyPython.mysql.pythonanywhere-services.com',
+        user='gastyPython',
+        password='Python2024**',
+        database='gastyPython$comercio'
     )
 
-    cursor = db.cursor() 
+    cursor = db.cursor() #en lugar de tener una lista con tuplas, tener un diccionario con clave(campo) y valor(dato)
     cursor.execute("DELETE FROM productos WHERE id = %s", (id,))
 
     db.commit()
     cursor.close()
-    return jsonify("Registro eliminado con exito!!") #generamos un json como respuesta
-# -------------------------------------------------------------------------------
+    return jsonify({"mensaje":"Registro eliminado con exito!!"}) #generamos un json como respuesta
 
+# -------------------------------------------------------------------------------
 #post -> crear un nuevo elemento en el servidor
 @app.route('/agregar_producto', methods=['POST'])
 def crear_producto():
     info = request.json
     '''
-    info = { "n": "monitor", "c": 45 , "p":100500}
+    info = { "nombre": "monitor", "cantidad": 45 , "precio":100500}
     '''
     db = mysql.connector.connect(
-        host='localhost',
-        user='root',
-        password='12345',
-        database='comercio'
+        host='gastyPython.mysql.pythonanywhere-services.com',
+        user='gastyPython',
+        password='Python2024**',
+        database='gastyPython$comercio'
     )
 
-    cursor = db.cursor() 
+    cursor = db.cursor()
     cursor.execute("INSERT INTO productos(nombre,cantidad,precio) VALUES(%s,%s,%s)", (info["nombre"],info["cantidad"],info["precio"]))
-    
+
     db.commit()
     cursor.close()
-    return jsonify({"mensaje: REGISTRO CREADO CON EXITO!!!"}) 
+    return jsonify({"mensaje": "REGISTRO AGREGADO CON EXITO!!!"})
 # -------------------------------------------------------------------------------
-
 #put -> actualizar/modificar
-@app.route('/actualizar_producto/<int:id>', methods=['PUT'])
-def modificar_producto(id):
+@app.route('/actualizar_producto/<int:product_id>', methods=['PUT'])
+def modificar_producto(product_id):
     info = request.json
     '''
     info = { "nombre": "monitor", "cantidad": 45 , "precio":100500}
     '''
     db = mysql.connector.connect(
-        host='localhost',
-        user='root',
-        password='12345',
-        database='comercio'
+        host='gastyPython.mysql.pythonanywhere-services.com',
+        user='gastyPython',
+        password='Python2024**',
+        database='gastyPython$comercio'
     )
 
-    cursor = db.cursor() 
-    cursor.execute("UPDATE productos SET nombre= %s, cantidad= %s, precio= %s WHERE id = %s", (info["nombre"],info["cantidad"],info["precio"]))
-   
+    cursor = db.cursor()
+    cursor.execute("UPDATE productos SET nombre= %s, cantidad= %s, precio= %s WHERE id = %s", (info["nombre"],info["cantidad"],info["precio"], product_id))
+
     db.commit()
     cursor.close()
-    return jsonify({"mensaje: REGISTRO ACTUALIZADO CON EXITO!!!"}) 
+    return jsonify({"mensaje": "REGISTRO ACTUALIZADO CON EXITO!!!"})
 
 # -------------------------------------------------------------------------------
-
 #desde donde se ejecuta nuestro proyecto
 if __name__ == '__main__':
-    app.run(debug=True) 
+    app.run(debug=True)
