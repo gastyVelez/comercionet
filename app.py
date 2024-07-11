@@ -48,7 +48,7 @@ def eliminar_productos(id):
 def crear_producto():
     info = request.json
     '''
-    info = { "nombre": "monitor", "cantidad": 45 , "precio":100500}
+    info = { "n": "monitor", "c": 45 , "p":100500}
     '''
     db = mysql.connector.connect(
         host='localhost',
@@ -58,7 +58,7 @@ def crear_producto():
     )
 
     cursor = db.cursor() 
-    cursor.execute("INSERT INTO productos(nombre,cantidad,precio) VALUES(%s,%s,%s)", (info["n"],info["c"],info["p"]))
+    cursor.execute("INSERT INTO productos(nombre,cantidad,precio) VALUES(%s,%s,%s)", (info["nombre"],info["cantidad"],info["precio"]))
     
     db.commit()
     cursor.close()
