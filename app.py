@@ -10,10 +10,10 @@ CORS(app)
 @app.route('/productos', methods=['GET'])
 def ver_productos():
     db = mysql.connector.connect(
-        host='gastyPython.mysql.pythonanywhere-services.com',
-        user='gastyPython',
-        password='Python2024**',
-        database='gastyPython$comercio'
+        host='localhost',
+        user='root',
+        password='12345',
+        database='comercio'
     )
 
     cursor = db.cursor(dictionary=True) #en lugar de tener una lista con tuplas, tener un diccionario con clave(campo) y valor(dato)
@@ -29,10 +29,10 @@ def ver_productos():
 @app.route('/eliminar_productos/<int:id>', methods=['DELETE'])
 def eliminar_productos(id):
     db = mysql.connector.connect(
-        host='gastyPython.mysql.pythonanywhere-services.com',
-        user='gastyPython',
-        password='Python2024**',
-        database='gastyPython$comercio'
+        host='localhost',
+        user='root',
+        password='12345',
+        database='comercio'
     )
 
     cursor = db.cursor() 
@@ -51,10 +51,10 @@ def crear_producto():
     info = { "nombre": "monitor", "cantidad": 45 , "precio":100500}
     '''
     db = mysql.connector.connect(
-        host='gastyPython.mysql.pythonanywhere-services.com',
-        user='gastyPython',
-        password='Python2024**',
-        database='gastyPython$comercio'
+        host='localhost',
+        user='root',
+        password='12345',
+        database='comercio'
     )
 
     cursor = db.cursor() 
@@ -73,10 +73,10 @@ def modificar_producto(id):
     info = { "nombre": "monitor", "cantidad": 45 , "precio":100500}
     '''
     db = mysql.connector.connect(
-        host='gastyPython.mysql.pythonanywhere-services.com',
-        user='gastyPython',
-        password='Python2024**',
-        database='gastyPython$comercio'
+        host='localhost',
+        user='root',
+        password='12345',
+        database='comercio'
     )
 
     cursor = db.cursor() 
