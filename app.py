@@ -62,12 +62,12 @@ def crear_producto():
     
     db.commit()
     cursor.close()
-    return jsonify({"mensaje: REGISTRO AGREGADO CON EXITO!!!"}) 
+    return jsonify({"mensaje: REGISTRO CREADO CON EXITO!!!"}) 
 # -------------------------------------------------------------------------------
 
 #put -> actualizar/modificar
 @app.route('/actualizar_producto/<int:id>', methods=['PUT'])
-def modificar_producto():
+def modificar_producto(id):
     info = request.json
     '''
     info = { "nombre": "monitor", "cantidad": 45 , "precio":100500}
