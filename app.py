@@ -23,11 +23,11 @@ def ver_productos():
 
     cursor.close()
     return jsonify(productos) #generamos un json como respuesta
-
 # -------------------------------------------------------------------------------
-#delete -> eliminar
+
+#delete -> eliminar un producto
 @app.route('/eliminar_productos/<int:id>', methods=['DELETE'])
-def eliminar_productos():
+def eliminar_productos(id):
     db = mysql.connector.connect(
         host='gastyPython.mysql.pythonanywhere-services.com',
         user='gastyPython',
@@ -35,14 +35,14 @@ def eliminar_productos():
         database='gastyPython$comercio'
     )
 
-    cursor = db.cursor() #en lugar de tener una lista con tuplas, tener un diccionario con clave(campo) y valor(dato)
+    cursor = db.cursor() 
     cursor.execute("DELETE FROM productos WHERE id = %s", (id,))
 
     db.commit()
     cursor.close()
     return jsonify("Registro eliminado con exito!!") #generamos un json como respuesta
-
 # -------------------------------------------------------------------------------
+
 #post -> crear un nuevo elemento en el servidor
 @app.route('/agregar_producto', methods=['POST'])
 def crear_producto():
