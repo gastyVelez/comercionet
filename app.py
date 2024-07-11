@@ -64,6 +64,7 @@ def crear_producto():
     cursor.close()
     return jsonify({"mensaje: REGISTRO AGREGADO CON EXITO!!!"}) 
 # -------------------------------------------------------------------------------
+
 #put -> actualizar/modificar
 @app.route('/actualizar_producto/<int:id>', methods=['PUT'])
 def modificar_producto():
@@ -86,6 +87,7 @@ def modificar_producto():
     return jsonify({"mensaje: REGISTRO ACTUALIZADO CON EXITO!!!"}) 
 
 # -------------------------------------------------------------------------------
+
 #desde donde se ejecuta nuestro proyecto
 if __name__ == '__main__':
     app.run(debug=True) 
