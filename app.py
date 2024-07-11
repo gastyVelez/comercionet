@@ -80,7 +80,7 @@ def modificar_producto(id):
     )
 
     cursor = db.cursor() 
-    cursor.execute("UPDATE productos SET nombre= %s, cantidad= %s, precio= %s WHERE id = %s", (info["n"],info["c"],info["p"]))
+    cursor.execute("UPDATE productos SET nombre= %s, cantidad= %s, precio= %s WHERE id = %s", (info["nombre"],info["cantidad"],info["precio"]))
    
     db.commit()
     cursor.close()
